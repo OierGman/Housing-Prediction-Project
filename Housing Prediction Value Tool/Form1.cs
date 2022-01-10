@@ -60,6 +60,7 @@ namespace Housing_Prediction_Value_Tool
             textboxRooms.Text = String.Empty;
             textboxValue.Text = String.Empty;
             textboxType.Text = String.Empty;
+            // max smells
 
             labelNumData.Text = "Number of Entries: " + tableData.Rows.Count;
         }
