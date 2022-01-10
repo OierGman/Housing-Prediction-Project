@@ -15,7 +15,7 @@ often used for machine learning, it calculates a line of best fit(LBF) from exis
 that has the lowest error value.
 
 
-Languages: C# and Python (not limited to)
+Languages: C#, Python, Jupyter Notebooks (not limited to)
 
 C#: Creating a forms application that allows for user to input data and then export to a .CSV file, the relevent data 
 is imported to a python project in Jupyter to carry out some mathematical analysis with visualisations.
