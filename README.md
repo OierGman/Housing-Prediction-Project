@@ -25,13 +25,17 @@ To begin the project but not limited to the following records.
 Data Recorded:
 1)  Number of Rooms
 2)  Value of Property
-3)  Housing Type
+3)  County/Location
+4)  Housing Type
 
     a) Appartment
+    
     b) Detached
+    
     c) Terraced
+    
     d) Bungalow
-4)  County/Location
+
 
 Python: The Python portion of the project is carrying out some basic data manipulation to get a visual understanding of regional data,
 which will be merged with country wide data where multiple factors are accounted for.
