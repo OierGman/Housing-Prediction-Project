@@ -27,14 +27,10 @@ Data Recorded:
 2)  Value of Property
 3)  County/Location
 4)  Housing Type
-
-    a) Appartment
-    
-    b) Detached
-    
-    c) Terraced
-    
-    d) Bungalow
+    - Appartment
+    - Detached
+    - Terraced
+    - Bungalow
 
 
 Python: The Python portion of the project is carrying out some basic data manipulation to get a visual understanding of regional data,
