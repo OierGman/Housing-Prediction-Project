@@ -21,10 +21,12 @@ C#: Creating a forms application that allows for user to input data and then exp
 is imported to a python project in Jupyter to carry out some mathematical analysis with visualisations.
 
 To begin the project but not limited to the following records.
+
 Data Recorded:
 1)  Number of Rooms
 2)  Value of Property
 3)  Housing Type
+
     a) Appartment
     b) Detached
     c) Terraced
@@ -35,6 +37,7 @@ Python: The Python portion of the project is carrying out some basic data manipu
 which will be merged with country wide data where multiple factors are accounted for.
 
 Data Output:
+
 1)  Relation of value of property and number of rooms, w/ comparisons
 2)  Relation of value of property and house type, w/ comparisons
 3)  Relation of value of property and geolocation, w/ comparisons
