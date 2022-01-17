@@ -16,7 +16,7 @@ namespace Housing_Prediction_Value_Tool
 
         private static void GetUtilityAsync()
         {
-            var url = "https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E61307&sortType=6&propertyTypes=&includeSSTC=false&mustHave=&dontShow=&furnishTypes=&keywords=";
+            var url = "";
 
             var httpClient = new HttpClient();
             var html = httpClient.GetStringAsync(url);
