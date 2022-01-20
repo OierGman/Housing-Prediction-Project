@@ -69,7 +69,7 @@ namespace Housing_Prediction_Value_Tool
             this.label1.Size = new System.Drawing.Size(105, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Number of Rooms";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+
             // 
             // label2
             // 
@@ -96,8 +96,7 @@ namespace Housing_Prediction_Value_Tool
             this.textboxRooms.Name = "textboxRooms";
             this.textboxRooms.Size = new System.Drawing.Size(100, 23);
             this.textboxRooms.TabIndex = 5;
-            this.textboxRooms.Text = "Min no rooms";
-            this.textboxRooms.TextChanged += new System.EventHandler(this.textboxRooms_TextChanged);
+
             // 
             // textboxValue
             // 
@@ -126,7 +125,7 @@ namespace Housing_Prediction_Value_Tool
             // labelNumData
             // 
             this.labelNumData.AutoSize = true;
-            this.labelNumData.Location = new System.Drawing.Point(281, 12);
+            this.labelNumData.Location = new System.Drawing.Point(12, 12);
             this.labelNumData.Name = "labelNumData";
             this.labelNumData.Size = new System.Drawing.Size(115, 15);
             this.labelNumData.TabIndex = 9;

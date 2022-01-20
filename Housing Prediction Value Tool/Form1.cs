@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Globalization;
 
 namespace Housing_Prediction_Value_Tool
 {
@@ -23,9 +25,15 @@ namespace Housing_Prediction_Value_Tool
         {
             dataGridView1.DataSource = tableData;
             tableData.Columns.Add("ROOMS", typeof(int));
-            tableData.Columns.Add("VALUE", typeof(int));
+            tableData.Columns.Add("VALUE", typeof(string));
             tableData.Columns.Add("HOUSE TYPE", typeof(string));
+
+            AllocConsole();
         }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -49,13 +57,57 @@ namespace Housing_Prediction_Value_Tool
             return Filename;
         }
 
+        private List<string> getPropertyInfo(string propertyType, string propertyRooms)
+        {
+            var url = "https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E61307&maxBedrooms=" + propertyRooms + "&minBedrooms=" + propertyRooms + "&propertyTypes=" + propertyType + "&includeSSTC=false&mustHave=&dontShow=&furnishTypes=&keywords=";
+
+            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+
+            HtmlAgilityPack.HtmlDocument doc = web.Load(url);
+
+            var propertyHtml = doc.DocumentNode.Descendants("div")
+                .Where(node => node.GetAttributeValue("class", "")
+                .Equals("l-searchResults")).ToList();
+
+            var propertyListItems = propertyHtml[0].Descendants("div")
+                .Where(node => node.GetAttributeValue("id", "")
+                .Contains("property-")).ToList();
+
+            List<string> propertyValues = new List<string>();
+
+
+            foreach (var propertyListItem in propertyListItems)
+            {
+                string p = propertyListItem.Descendants("div")
+                                        .Where(node => node.GetAttributeValue("class", "")
+                                        .Equals("propertyCard-priceValue"))
+                                        .FirstOrDefault().InnerText
+                                        .Trim('\t', '\n', '£', 'r', ',', ' ');
+                propertyValues.Add(p);
+            }
+            return propertyValues;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            int room = int.Parse(textboxRooms.Text);
-            int value = int.Parse(textboxValue.Text);
-            string type = textboxType.Text.ToUpper();
+            string propertyRoom = textboxRooms.Text;
+            string propertyType = textboxType.Text.ToLower();
 
-            tableData.Rows.Add(room, value, type);
+            List<string> propertyValue = getPropertyInfo(propertyType, propertyRoom);
+
+            foreach (var item in propertyValue)
+            {
+                NumberStyles numStyle = NumberStyles.AllowThousands;
+                CultureInfo culture = new CultureInfo("en-US");
+                int newItem = 0;
+
+                bool resultOfConvert = Int32.TryParse(item, numStyle, culture, out newItem);
+
+                if ( resultOfConvert == true)
+                {
+                    tableData.Rows.Add(propertyRoom, newItem, propertyType);
+                }
+            }
 
             textboxRooms.Text = String.Empty;
             textboxValue.Text = String.Empty;
@@ -63,16 +115,6 @@ namespace Housing_Prediction_Value_Tool
             // max smells
 
             labelNumData.Text = "Number of Entries: " + tableData.Rows.Count;
-        }
-
-        private void textboxRooms_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
