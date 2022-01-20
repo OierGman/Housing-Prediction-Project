@@ -64,5 +64,15 @@ namespace Housing_Prediction_Value_Tool
 
             labelNumData.Text = "Number of Entries: " + tableData.Rows.Count;
         }
+
+        private void textboxRooms_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

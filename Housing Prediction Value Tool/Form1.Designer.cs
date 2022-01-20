@@ -64,11 +64,12 @@ namespace Housing_Prediction_Value_Tool
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 78);
+            this.label1.Location = new System.Drawing.Point(12, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Number of Rooms";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -90,10 +91,13 @@ namespace Housing_Prediction_Value_Tool
             // 
             // textboxRooms
             // 
-            this.textboxRooms.Location = new System.Drawing.Point(12, 96);
+            this.textboxRooms.Location = new System.Drawing.Point(12, 73);
+            this.textboxRooms.MaxLength = 9;
             this.textboxRooms.Name = "textboxRooms";
             this.textboxRooms.Size = new System.Drawing.Size(100, 23);
             this.textboxRooms.TabIndex = 5;
+            this.textboxRooms.Text = "Min no rooms";
+            this.textboxRooms.TextChanged += new System.EventHandler(this.textboxRooms_TextChanged);
             // 
             // textboxValue
             // 
@@ -122,7 +126,7 @@ namespace Housing_Prediction_Value_Tool
             // labelNumData
             // 
             this.labelNumData.AutoSize = true;
-            this.labelNumData.Location = new System.Drawing.Point(12, 12);
+            this.labelNumData.Location = new System.Drawing.Point(281, 12);
             this.labelNumData.Name = "labelNumData";
             this.labelNumData.Size = new System.Drawing.Size(115, 15);
             this.labelNumData.TabIndex = 9;
@@ -144,7 +148,7 @@ namespace Housing_Prediction_Value_Tool
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Housing Prediction Value tool (HPVt)";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
