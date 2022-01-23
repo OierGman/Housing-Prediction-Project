@@ -25,7 +25,7 @@ namespace Housing_Prediction_Value_Tool
         {
             dataGridView1.DataSource = tableData;
             tableData.Columns.Add("ROOMS", typeof(int));
-            tableData.Columns.Add("VALUE", typeof(string));
+            tableData.Columns.Add("VALUE", typeof(int));
             tableData.Columns.Add("HOUSE TYPE", typeof(string));
 
             AllocConsole();
@@ -82,7 +82,7 @@ namespace Housing_Prediction_Value_Tool
                                         .Where(node => node.GetAttributeValue("class", "")
                                         .Equals("propertyCard-priceValue"))
                                         .FirstOrDefault().InnerText
-                                        .Trim('\t', '\n', '£', 'r', ',', ' ');
+                                        .Trim('\t', '\n', '£', '\r', ',', ' ');
                 propertyValues.Add(p);
             }
             return propertyValues;
