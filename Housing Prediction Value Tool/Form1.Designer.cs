@@ -37,6 +37,7 @@ namespace Housing_Prediction_Value_Tool
             this.textboxType = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.labelNumData = new System.Windows.Forms.Label();
+            this.resetButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,11 +112,22 @@ namespace Housing_Prediction_Value_Tool
             this.labelNumData.TabIndex = 9;
             this.labelNumData.Text = "Number of Entries: 0";
             // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(12, 303);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(97, 28);
+            this.resetButton.TabIndex = 10;
+            this.resetButton.Text = "RESET FILTER";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 376);
+            this.Controls.Add(this.resetButton);
             this.Controls.Add(this.labelNumData);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textboxType);
@@ -143,6 +155,7 @@ namespace Housing_Prediction_Value_Tool
         private System.Windows.Forms.TextBox textboxType;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label labelNumData;
+        private System.Windows.Forms.Button resetButton;
     }
 }
 

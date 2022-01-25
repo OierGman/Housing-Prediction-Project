@@ -24,8 +24,9 @@ namespace Housing_Prediction_Value_Tool
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = tableData;
+            tableData.Columns.Add("PROPERTY ID", typeof(string));
             tableData.Columns.Add("ROOMS", typeof(int));
-            tableData.Columns.Add("VALUE", typeof(int));
+            tableData.Columns.Add("VALUE", typeof(string));
             tableData.Columns.Add("HOUSE TYPE", typeof(string));
 
             AllocConsole();
@@ -57,7 +58,7 @@ namespace Housing_Prediction_Value_Tool
             return Filename;
         }
 
-        private List<string> getPropertyInfo(string propertyType, string propertyRooms)
+        private List<string> getPropertyValue(string propertyType, string propertyRooms)
         {
             var url = "https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E61307&maxBedrooms=" + propertyRooms + "&minBedrooms=" + propertyRooms + "&propertyTypes=" + propertyType + "&includeSSTC=false&mustHave=&dontShow=&furnishTypes=&keywords=";
 
@@ -88,12 +89,32 @@ namespace Housing_Prediction_Value_Tool
             return propertyValues;
         }
 
+        private List<string> getPropertyId(string propertyType, string propertyRooms)
+        {
+            var url = "https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E61307&maxBedrooms=" + propertyRooms + "&minBedrooms=" + propertyRooms + "&propertyTypes=" + propertyType + "&includeSSTC=false&mustHave=&dontShow=&furnishTypes=&keywords=";
+
+            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+
+            HtmlAgilityPack.HtmlDocument doc = web.Load(url);
+
+            var propertyHtml = doc.DocumentNode.Descendants("div")
+                .Where(node => node.GetAttributeValue("class", "")
+                .Equals("l-searchResults")).ToList();
+
+            var propertyListItems = propertyHtml[0].Descendants("div")
+                .Where(node => node.GetAttributeValue("id", "")
+                .Contains("property-")).ToList();
+
+            // return property id
+            return null;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             string propertyRoom = textboxRooms.Text;
             string propertyType = textboxType.Text.ToLower();
 
-            List<string> propertyValue = getPropertyInfo(propertyType, propertyRoom);
+            List<string> propertyValue = getPropertyValue(propertyType, propertyRoom);
 
             foreach (var item in propertyValue)
             {
@@ -105,16 +126,18 @@ namespace Housing_Prediction_Value_Tool
 
                 if ( resultOfConvert == true)
                 {
-                    tableData.Rows.Add(propertyRoom, newItem, propertyType);
+                    tableData.Rows.Add("Not Found", propertyRoom, newItem, propertyType);
                 }
-            }
-
-            textboxRooms.Text = String.Empty;
-            textboxValue.Text = String.Empty;
-            textboxType.Text = String.Empty;
+            }         
             // max smells
 
             labelNumData.Text = "Number of Entries: " + tableData.Rows.Count;
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            textboxRooms.Text = String.Empty;
+            textboxType.Text = String.Empty;
         }
     }
 }
