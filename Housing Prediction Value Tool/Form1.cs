@@ -46,7 +46,6 @@ namespace Housing_Prediction_Value_Tool
         {
             string Filename = null;
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "Excel|*.xls";
             saveFileDialog.Filter = "csv File|*.csv";
             saveFileDialog.Title = "Save Report";
             DialogResult dialogResult = saveFileDialog.ShowDialog();
@@ -104,8 +103,7 @@ namespace Housing_Prediction_Value_Tool
             var propertyListItems = propertyHtml[0].Descendants("div")
                 .Where(node => node.GetAttributeValue("id", "")
                 .Contains("property-")).ToList();
-
-            // return property id
+                
             return null;
         }
 
@@ -129,7 +127,7 @@ namespace Housing_Prediction_Value_Tool
                     tableData.Rows.Add("Not Found", propertyRoom, newItem, propertyType);
                 }
             }         
-            // max smells
+
 
             labelNumData.Text = "Number of Entries: " + tableData.Rows.Count;
         }
